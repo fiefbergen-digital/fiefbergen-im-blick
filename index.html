@@ -1,71 +1,227 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fiefbergen im Blick</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#073765">
+<title>Fiefbergen im Blick – Testversion 0.4</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f1f5f9;color:#17324d;font:16px Arial,sans-serif}
-header{background:#073765;color:white;padding:24px;text-align:center}
-header h1{margin:8px 0}
-main{max-width:650px;margin:24px auto;padding:0 16px}
-section{background:white;padding:24px;border-radius:16px;margin-bottom:18px;box-shadow:0 3px 14px #0001}
-h2{margin-top:0}
-label{display:block;font-weight:bold;margin:16px 0 6px}
-input,select,textarea{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font:inherit}
-button{background:#f3c83e;color:#073765;border:0;border-radius:9px;padding:15px 22px;font-weight:bold;font-size:16px;cursor:pointer;width:100%;margin-top:18px}
-.note{background:#fff3c4;padding:12px;border-radius:8px;font-size:14px}
-small{color:#64748b}
+header{background:#073765;color:white;text-align:center;padding:25px 16px}
+header img{width:85px;max-height:105px;object-fit:contain}
+header h1{margin:10px 0 5px}
+header p{margin:0;color:#dbeafe}
+main{max-width:650px;margin:22px auto;padding:0 14px}
+section{background:white;padding:22px;border-radius:15px;margin-bottom:17px;box-shadow:0 3px 12px #0001}
+h2{margin:0 0 12px}
+label{display:block;font-weight:bold;margin:17px 0 7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #bac8d6;border-radius:9px;font:inherit;background:white;color:#17324d}
+button{width:100%;margin-top:20px;padding:16px;background:#f3c83e;color:#073765;border:0;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer}
+.note{background:#fff1c2;padding:13px;border-radius:9px;font-size:14px}
+.hint{font-size:13px;color:#536579;margin-top:6px}
+.hidden{display:none}
+#result{margin-top:15px;font-weight:bold}
+footer{text-align:center;padding:10px 20px 30px;color:#64748b;font-size:13px}
 </style>
 </head>
 <body>
 <header>
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fiefbergen_Wappen.png" alt="Wappen der Gemeinde Fiefbergen">
 <h1>Fiefbergen im Blick</h1>
-<p>Der digitale Mängelmelder unserer Gemeinde</p>
+<p>Gemeinsam unser Dorf verbessern</p>
 </header>
 <main>
 <section>
-<h2>Gemeinsam unser Dorf verbessern</h2>
-<p>Kaputte Straßenlaterne, Schlagloch oder wilder Müll? Hier kannst du einen Mangel melden.</p>
-<div class="note">TESTVERSION: Es werden noch keine Meldungen gespeichert oder versendet. Bitte nur erfundene Testdaten verwenden.</div>
+<h2>Moin Fiefbergen!</h2>
+<p>Dir ist etwas aufgefallen, das repariert oder gereinigt werden sollte? Hier kannst du es unkompliziert melden.</p>
+<div class="note"><strong>TESTVERSION 0.4</strong><br>
+Dies ist ein unverbindlicher Prototyp und noch kein offizieller Meldedienst. Es werden keine Meldungen gespeichert oder versendet. Bitte ausschließlich erfundene Testdaten verwenden.</div>
 </section>
 <section>
 <h2>Mangel melden</h2>
-<form id="meldung">
-<label for="kategorie">Was ist passiert?</label>
-<select id="kategorie" required>
+<form id="form">
+<label for="category">1. Was möchtest du melden?</label>
+<select id="category" required>
 <option value="">Bitte auswählen</option>
-<option>Straßen und Wege</option>
-<option>Straßenbeleuchtung</option>
-<option>Grünanlagen und Spielplätze</option>
-<option>Müll und Verschmutzung</option>
+<option value="verkehr">Straßen, Wege & Verkehr</option>
+<option value="licht">Beleuchtung & Hydranten</option>
+<option value="gruen">Spielplätze & Grünanlagen</option>
+<option value="dorf">Dorfleben & Einrichtungen</option>
+<option value="rad">Fahrräder & Mobilität</option>
+<option value="muell">Sauberkeit & Müll</option>
+</select>
+
+<div id="detailBox" class="hidden">
+<label for="detail">2. Was genau ist betroffen?</label>
+<select id="detail" required></select>
+</div>
+
+<div id="lampBox" class="hidden">
+<label for="street">Welche Straße?</label>
+<select id="street"></select>
+<label for="lamp">Welche Laternennummer?</label>
+<select id="lamp"></select>
+<p class="hint">Die Nummer ist freiwillig. Wenn du sie nicht kennst, wähle „Nicht bekannt“.</p>
+<label for="fault">Was ist das Problem?</label>
+<select id="fault">
+<option>Leuchtet nicht</option>
+<option>Flackert</option>
+<option>Beschädigt</option>
 <option>Sonstiges</option>
 </select>
-<label for="ort">Wo befindet sich der Mangel?</label>
-<input id="ort" required placeholder="Straße oder Ortsbeschreibung">
-<label for="beschreibung">Beschreibung</label>
-<textarea id="beschreibung" rows="4" required placeholder="Was ist dir aufgefallen?"></textarea>
-<label for="foto">Foto (optional)</label>
-<input id="foto" type="file" accept="image/*">
-<label for="name">Dein Name</label>
-<input id="name" required placeholder="Testname">
-<label for="email">Deine E-Mail-Adresse</label>
-<input id="email" type="email" required placeholder="test@example.com">
-<button type="submit">Testmeldung absenden</button>
+</div>
+
+<label for="location">3. Wo befindet sich der Mangel?</label>
+<input id="location" placeholder="Straße, Hausnummer oder Beschreibung" required>
+<p class="hint">Bei einer Laternenmeldung genügt die Straßenauswahl, wenn du die Nummer kennst.</p>
+
+<label for="description">4. Möchtest du etwas ergänzen?</label>
+<textarea id="description" rows="3" placeholder="Kurze Beschreibung (freiwillig)"></textarea>
+
+<label for="photo">5. Foto hinzufügen (freiwillig)</label>
+<input id="photo" type="file" accept="image/*">
+<p class="hint">Auf dem iPhone kannst du auch direkt die Kamera verwenden.</p>
+
+<button type="submit">Testmeldung prüfen</button>
 </form>
-<p id="ergebnis" role="status"></p>
+<p id="result" role="status" aria-live="polite"></p>
 </section>
 <section>
-<h2>Bearbeitungsstand</h2>
-<p>In der späteren Version kannst du mit deiner Vorgangsnummer den Bearbeitungsstand deiner Meldung abfragen.</p>
-<small>Diese Funktion wird noch entwickelt.</small>
+<h2>Wie geht es weiter?</h2>
+<p>In der späteren Version erhältst du eine Vorgangsnummer. Die zuständigen Mitarbeiter können deine Meldung dann bearbeiten.</p>
+<p class="hint">Die echte Übermittlung, E-Mail-Benachrichtigung und geschützte Verwaltung werden erst nach Einrichtung einer sicheren Serverlösung aktiviert.</p>
 </section>
 </main>
+<footer>Fiefbergen im Blick · Prototyp 0.4</footer>
 <script>
-document.getElementById("meldung").addEventListener("submit",function(e){
+const types={
+verkehr:[
+"Schlagloch / Straßenschaden",
+"Gehweg beschädigt",
+"Fußgängerampel",
+"Geschwindigkeitsanzeige defekt",
+"Gully verstopft",
+"Hecke behindert Gehweg",
+"Straßenverschmutzung durch Landwirtschaft",
+"Sonstiges"],
+licht:[
+"Straßenlaterne defekt",
+"Laternenmast beschädigt",
+"Hydrant beschädigt oder verdeckt",
+"Sonstiges"],
+gruen:[
+"Spielplatz Dorfstraße",
+"Spielplatz Am Wanderweg",
+"Hundekotbeutelspender",
+"Bäume / Grünflächen",
+"Sonstiges"],
+dorf:[
+"Strohfigur am Dorfplatz",
+"Stempelkiste unter den Linden",
+"Sitzbank / Tisch",
+"Bushaltestelle Schönberg",
+"Bushaltestelle Kiel",
+"Sonstiges"],
+rad:[
+"SprottenFlotte-Ausleihstation",
+"Fahrräder blockieren den Weg",
+"Sonstiges"],
+muell:[
+"Illegale Müllentsorgung",
+"Verschmutzte öffentliche Fläche",
+"Hundekot",
+"Sonstiges"]
+};
+
+const lamps={
+"Schönberger Straße":11,
+"Bgm. A. Stoltenberg-Str.":5,
+"Am Kirchteich":2,
+"Appelhof":10,
+"Am Dorfteich":5,
+"Krokauer Weg":1,
+"Lindenstraße":3,
+"Dorfstraße":14,
+"St. Florian Weg":7,
+"Am Bahndamm":12,
+"Spetenhof":3
+};
+
+const category=document.getElementById("category");
+const detail=document.getElementById("detail");
+const street=document.getElementById("street");
+const lamp=document.getElementById("lamp");
+const fault=document.getElementById("fault");
+const locationField=document.getElementById("location");
+const detailBox=document.getElementById("detailBox");
+const lampBox=document.getElementById("lampBox");
+
+function addOption(select,text,value=text){
+const o=document.createElement("option");
+o.value=value;
+o.textContent=text;
+select.appendChild(o);
+}
+
+Object.keys(lamps).forEach(s=>addOption(street,s));
+
+function updateLamps(){
+lamp.innerHTML="";
+addOption(lamp,"Nicht bekannt","");
+for(let n=1;n<=lamps[street.value];n++){
+addOption(lamp,"Laterne Nr. "+n,String(n));
+}
+}
+
+function updateDetail(){
+const selected=category.value;
+detail.innerHTML="";
+detailBox.classList.toggle("hidden",!selected);
+if(!selected){
+lampBox.classList.add("hidden");
+return;
+}
+addOption(detail,"Bitte auswählen","");
+types[selected].forEach(t=>addOption(detail,t));
+lampBox.classList.add("hidden");
+}
+
+function updateSpecial(){
+const show=category.value==="licht" &&
+detail.value==="Straßenlaterne defekt";
+lampBox.classList.toggle("hidden",!show);
+if(show && !locationField.value.trim()){
+locationField.value=street.value;
+}
+}
+
+category.addEventListener("change",updateDetail);
+detail.addEventListener("change",updateSpecial);
+street.addEventListener("change",()=>{
+updateLamps();
+if(!locationField.value.trim() ||
+Object.keys(lamps).includes(locationField.value)){
+locationField.value=street.value;
+}
+});
+
+updateLamps();
+
+document.getElementById("form").addEventListener("submit",e=>{
 e.preventDefault();
-document.getElementById("ergebnis").textContent="Test erfolgreich! Das Formular funktioniert. Es wurden keine Daten übertragen oder gespeichert.";
+const selected=category.options[category.selectedIndex].text;
+let summary=selected+" – "+detail.value;
+if(!lampBox.classList.contains("hidden")){
+summary+=" | "+street.value;
+if(lamp.value)summary+=" | Laterne "+lamp.value;
+summary+=" | "+fault.value;
+}
+summary+=" | Ort: "+locationField.value;
+document.getElementById("result").textContent=
+"Test erfolgreich! "+summary+
+". Es wurden keine Daten gespeichert oder versendet.";
 });
 </script>
 </body>
