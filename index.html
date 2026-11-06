@@ -1,228 +1,80 @@
-
 <!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#073765">
-<title>Fiefbergen im Blick – Testversion 0.4</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#f1f5f9;color:#17324d;font:16px Arial,sans-serif}
-header{background:#073765;color:white;text-align:center;padding:25px 16px}
-header img{width:85px;max-height:105px;object-fit:contain}
-header h1{margin:10px 0 5px}
-header p{margin:0;color:#dbeafe}
-main{max-width:650px;margin:22px auto;padding:0 14px}
-section{background:white;padding:22px;border-radius:15px;margin-bottom:17px;box-shadow:0 3px 12px #0001}
-h2{margin:0 0 12px}
-label{display:block;font-weight:bold;margin:17px 0 7px}
-input,select,textarea{width:100%;padding:13px;border:1px solid #bac8d6;border-radius:9px;font:inherit;background:white;color:#17324d}
-button{width:100%;margin-top:20px;padding:16px;background:#f3c83e;color:#073765;border:0;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer}
-.note{background:#fff1c2;padding:13px;border-radius:9px;font-size:14px}
-.hint{font-size:13px;color:#536579;margin-top:6px}
-.hidden{display:none}
-#result{margin-top:15px;font-weight:bold}
-footer{text-align:center;padding:10px 20px 30px;color:#64748b;font-size:13px}
-</style>
-</head>
-<body>
-<header>
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fiefbergen_Wappen.png" alt="Wappen der Gemeinde Fiefbergen">
-<h1>Fiefbergen im Blick</h1>
-<p>Gemeinsam unser Dorf verbessern</p>
-</header>
-<main>
-<section>
-<h2>Moin Fiefbergen!</h2>
-<p>Dir ist etwas aufgefallen, das repariert oder gereinigt werden sollte? Hier kannst du es unkompliziert melden.</p>
-<div class="note"><strong>TESTVERSION 0.4</strong><br>
-Dies ist ein unverbindlicher Prototyp und noch kein offizieller Meldedienst. Es werden keine Meldungen gespeichert oder versendet. Bitte ausschließlich erfundene Testdaten verwenden.</div>
-</section>
-<section>
-<h2>Mangel melden</h2>
-<form id="form">
-<label for="category">1. Was möchtest du melden?</label>
-<select id="category" required>
-<option value="">Bitte auswählen</option>
-<option value="verkehr">Straßen, Wege & Verkehr</option>
-<option value="licht">Beleuchtung & Hydranten</option>
-<option value="gruen">Spielplätze & Grünanlagen</option>
-<option value="dorf">Dorfleben & Einrichtungen</option>
-<option value="rad">Fahrräder & Mobilität</option>
-<option value="muell">Sauberkeit & Müll</option>
-</select>
+<html lang="de"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#073765" name="theme-color"/><title>Fiefbergen im Blick – Testversion 0.7</title><link href="icons/icon-192.png" rel="icon" type="image/png"/><link href="icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/><meta content="Fiefbergen" name="apple-mobile-web-app-title"/><link href="manifest.webmanifest" rel="manifest"/><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#18324a;background:#f2f6fa}*{box-sizing:border-box}body{margin:0}header{background:#073765;color:white;padding:24px 16px;text-align:center}header img{width:76px;height:90px;object-fit:contain;display:block;margin:0 auto 10px}header h1{font-size:clamp(1.65rem,5vw,2.3rem);margin:0 0 6px}header p{margin:0;opacity:.9}main{max-width:690px;margin:22px auto;padding:0 14px 45px}.card{background:#fff;border-radius:17px;padding:22px;margin-bottom:17px;box-shadow:0 3px 15px #1122330c}.notice{background:#fff2c5;border-left:5px solid #d49d00;padding:13px;border-radius:8px;line-height:1.45}.muted{color:#536a7d}h2{margin:0 0 12px;font-size:1.35rem}label{display:block;font-weight:650;margin:18px 0 7px}input,select,textarea{display:block;width:100%;padding:13px;font:inherit;border:1px solid #b8c8d6;border-radius:10px;background:#fff;color:#18324a}textarea{resize:vertical}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.choice{border:2px solid #d9e2ec;background:#f7fafc;color:#17324d;border-radius:12px;min-height:85px;padding:12px 8px;font:600 0.92rem system-ui;cursor:pointer}.choice[aria-pressed=true]{border-color:#073765;background:#e5f0ff}.choice span{display:block;font-size:1.55rem;margin-bottom:5px}.hidden{display:none!important}.button{width:100%;padding:15px;border:0;border-radius:11px;background:#f3c83e;color:#073765;font-weight:750;font-size:1rem;cursor:pointer;margin-top:20px}.small{font-size:.88rem}.summary{background:#eef5fb;border-radius:12px;padding:16px;white-space:pre-wrap;line-height:1.6}.tabs{display:flex;gap:8px;margin-bottom:16px}.tab{flex:1;padding:13px 6px;border:1px solid #bdcddd;border-radius:10px;background:white;color:#17324d;font:700 1rem system-ui;cursor:pointer}.tab[aria-selected=true]{background:#073765;color:white}.status{display:inline-block;padding:5px 10px;border-radius:99px;background:#e6effb;color:#073765;font-size:.84rem;font-weight:700}.status.done{background:#e0f4e8;color:#155e35}.status.progress{background:#fff1c7;color:#775400}.status.forward{background:#eee7fa;color:#58358b}.report{padding:14px;border:1px solid #dce5ed;border-radius:12px;margin-top:12px}.report h3{margin:0 0 8px;font-size:1rem}.report p{margin:7px 0}.report select{margin-top:8px}.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.muted-note{font-size:.85rem;color:#536a7d}.emergency{margin-top:16px;padding:16px;background:#fff0e7;border:2px solid #c94d24;border-radius:12px;line-height:1.5}.emergency p{margin:10px 0}.call{display:block;text-align:center;padding:14px 8px;border-radius:9px;background:#b92d1d;color:#fff;text-decoration:none;font-weight:750;overflow-wrap:anywhere}footer{text-align:center;color:#607489;font-size:.85rem}.legal-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 0 15px}.legal-links a{font-weight:650}.legal-card{scroll-margin-top:18px}.legal-card p,.legal-card li{line-height:1.55}.legal-card h3{font-size:1.03rem;margin:16px 0 8px}.legal-card a{overflow-wrap:anywhere}.legal-note{border-left:4px solid #d49d00;background:#fff5d8;border-radius:7px;padding:12px;margin:12px 0}a{color:#073765}@media(max-width:380px){.choices{grid-template-columns:1fr}.card{padding:16px}}
 
-<div id="detailBox" class="hidden">
-<label for="detail">2. Was genau ist betroffen?</label>
-<select id="detail" required></select>
-</div>
+/* Kompakte Rechtshinweise: Text erscheint nur nach bewusster Auswahl. */
+.legal-links{margin:0 0 14px;gap:8px}
+.legal-trigger{font:600 .87rem system-ui;color:#073765;background:#fff;border:1px solid #b8c8d6;border-radius:9px;padding:10px 12px;cursor:pointer}
+.legal-trigger:hover,.legal-trigger:focus-visible{background:#e5f0ff;outline-offset:3px}
+.legal-dialog{border:0;border-radius:17px;padding:0;width:min(640px,calc(100% - 24px));max-height:min(86dvh,850px);box-shadow:0 16px 60px #102c4b55;color:#18324a}
+.legal-dialog::backdrop{background:#0b2039a8}
+.legal-dialog-content{padding:26px 22px;overflow-y:auto;max-height:min(86dvh,850px);line-height:1.55}
+.legal-dialog-content h2{padding-right:35px;margin-bottom:18px}
+.legal-dialog-content h3{font-size:1.03rem;margin:16px 0 8px}
+.legal-dialog-content a{overflow-wrap:anywhere}
+.legal-close{float:right;position:sticky;top:0;background:#073765;color:white;border:0;border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:1.2rem}
+@media(max-width:400px){.legal-dialog-content{padding:18px 15px}.legal-trigger{font-size:.82rem;padding:9px}}
+</style></head><body><header><img alt="Wappen der Gemeinde Fiefbergen" src="wappen.png"/><h1>Fiefbergen im Blick</h1><p>Gemeinsam unser Dorf verbessern</p></header><main><div aria-label="Bereich auswählen" class="tabs" role="tablist"><button aria-selected="true" class="tab" id="citizenTab" role="tab" type="button">Mangel melden</button><button aria-selected="false" class="tab" id="demoTab" role="tab" type="button">Status-Demo</button></div><div id="citizenView"><section class="card"><div class="notice"><strong>Unverbindlicher Prototyp – kein offizieller Meldedienst.</strong> Es werden keine Meldungen versendet oder gespeichert. Bitte ausschließlich erfundene Testdaten eingeben. Die Status-Demo ist öffentlich und enthält nur fiktive Beispiele.</div><p class="muted">Ein Schaden im Dorf? Wähle einfach aus, was betroffen ist. Wir zeigen dir nur die passenden Fragen.</p></section><section class="card"><h2>Was möchtest du melden?</h2><div class="choices" id="categories"></div><label for="issue">Was ist betroffen?</label><select id="issue"></select><div class="hidden" id="lampFields"><label for="street">In welcher Straße steht die Laterne?</label><select id="street"><option value="">Bitte auswählen</option></select><label for="lamp">Welche Laterne? <span class="muted small">(freiwillig)</span></label><select id="lamp"><option value="">Nummer nicht bekannt</option></select><p aria-live="polite" class="muted small" id="lampHint"></p></div><div class="hidden" id="hydrantFields"><label for="hydrantStreet">In welcher Straße?</label><select id="hydrantStreet"><option value="">Bitte Straße auswählen</option></select><label for="hydrantPlace">Welcher Standort? <span class="muted small">(freiwillig)</span></label><select id="hydrantPlace"><option value="">Standort nicht bekannt</option></select><label for="hydrantProblem">Was ist das Problem?</label><select id="hydrantProblem"><option value="">Bitte auswählen</option><option>Beschädigt / Wasseraustritt</option><option>Nicht zugänglich / zugewachsen</option><option>Kennzeichnung fehlt / unleserlich</option><option>Sonstiges</option></select><div class="hidden emergency" id="hydrantAlert" role="note"><strong>⚠️ Bei akuten Schäden nicht auf die Online-Meldung warten!</strong><p>Bei Wasseraustritt oder Gefährdung der Löschwasserversorgung bitte direkt den Wasserbeschaffungsverband Panker-Giekau verständigen.</p><a class="call" href="tel:+491712171178">📞 Notfall-Rufbereitschaft: 0171 2171178</a><p class="small">Regulär: <a href="tel:+4943449543">04344 9543</a> · <a href="mailto:info@wbvpg.de">info@wbvpg.de</a></p><p class="small">Bei Brand oder unmittelbarer Gefahr für Menschen: <strong>112</strong>.</p></div><p class="muted small">Kartenansicht für Laternen und Hydranten ist geplant. Verlässliche Koordinaten liegen noch nicht vor.</p></div><div class="hidden" id="faultFields"><label for="fault">Was ist das Problem?</label><select id="fault"><option>Leuchtet nicht</option><option>Flackert</option><option>Beschädigt</option><option>Sonstiges</option></select></div><label for="location">Wo befindet sich der Mangel?</label><input id="location" placeholder="Straße, Hausnummer oder kurze Ortsbeschreibung"/><p class="muted small">Bei einer Laterne kannst du die Straße oben auswählen. Eine zusätzliche Ortsangabe ist freiwillig.</p><label for="details">Weitere Beschreibung <span class="muted small">(freiwillig)</span></label><textarea id="details" placeholder="Was sollten wir noch wissen?" rows="3"></textarea><label for="photo">Foto <span class="muted small">(freiwillig)</span></label><input accept="image/*" capture="environment" id="photo" type="file"/><p class="muted small">Auf dem iPhone kannst du ein Foto aufnehmen oder auswählen. Das Foto wird in dieser Testversion nicht hochgeladen.</p><label for="name">Dein Name</label><input autocomplete="off" id="name" placeholder="Nur Testname verwenden"/><label for="email">Deine E-Mail-Adresse</label><input autocomplete="off" id="email" placeholder="test@example.com" type="email"/><button class="button" id="send" type="button">Testmeldung ansehen</button></section><section aria-live="polite" class="card hidden" id="result"><h2>Vorschau deiner Testmeldung</h2><div class="summary" id="summary"></div><p class="muted small">Diese Vorschau ist nur auf deinem Bildschirm sichtbar. Nichts wurde verschickt oder gespeichert.</p></section></div><div class="hidden" id="demoView"><section class="card"><h2>Statusverwaltung ausprobieren</h2><div class="notice"><strong>Öffentliche Demo – keine echte Verwaltung.</strong> Alle Vorgänge sind erfunden. Jeder Besucher kann die Statusänderungen nur in seiner eigenen geöffneten Seite ausprobieren. Änderungen werden nicht gespeichert.</div><p class="muted">So könnte später die geschützte Übersicht für Gemeinde und Bürgermeisterin aussehen.</p><div id="demoReports"></div><button class="button" id="resetDemo" type="button">Beispiele zurücksetzen</button></section><section class="card"><h2>Bearbeitungsstand abfragen</h2><p class="muted">Gib eine der Beispielnummern ein, etwa <strong>FIE-DEMO-001</strong>.</p><label for="lookup">Vorgangsnummer</label><input autocomplete="off" id="lookup" placeholder="FIE-DEMO-001"/><button class="button" id="lookupButton" type="button">Status anzeigen</button><p aria-live="polite" id="lookupResult" role="status"></p></section></div><footer><nav aria-label="Rechtliche Informationen" class="legal-links"><button aria-haspopup="dialog" class="legal-trigger" data-legal="impressum" type="button">Impressum</button><button aria-haspopup="dialog" class="legal-trigger" data-legal="datenschutz" type="button">Datenschutz</button><button aria-haspopup="dialog" class="legal-trigger" data-legal="nutzung" type="button">Nutzungshinweise</button></nav>Fiefbergen im Blick · Testversion 0.7 · Keine echten Meldungen</footer><dialog aria-labelledby="title-impressum" class="legal-dialog" id="dialog-impressum"><div class="legal-dialog-content"><button aria-label="Fenster schließen" class="legal-close" type="button">✕</button><h2 id="title-impressum">Impressum – Angaben zur Testversion</h2><div class="legal-note"><strong>Entwurf, kein rechtsverbindliches Impressum.</strong> Diese Testversion ist kein offizieller Meldedienst der Gemeinde Fiefbergen. Die rechtlich verantwortliche Stelle und die erforderlichen Kontaktdaten sind vor einer öffentlichen Bereitstellung verbindlich festzulegen.</div><p>Projekt: <strong>Fiefbergen im Blick</strong> – Erprobung einer digitalen Mängelmeldung für Fiefbergen.</p><p><strong>Projektansprechpartner:</strong> Wird vor der öffentlichen Bereitstellung mit erreichbarer Kontaktmöglichkeit ergänzt.</p><p><strong>Geplante Projektadresse:</strong> melder@fiefbergen.de – <strong>noch nicht eingerichtet; bitte nicht anschreiben.</strong></p><p>Die bestehende <a href="http://fiefbergen.de/impress.htm" rel="noopener noreferrer" target="_blank">Impressumsseite der Gemeinde Fiefbergen</a> dient lediglich als Orientierung und ersetzt nicht die erforderlichen Angaben für diesen Dienst.</p></div></dialog><dialog aria-labelledby="title-datenschutz" class="legal-dialog" id="dialog-datenschutz"><div class="legal-dialog-content"><button aria-label="Fenster schließen" class="legal-close" type="button">✕</button><h2 id="title-datenschutz">Datenschutz – Hinweise zur Testversion</h2><div class="legal-note"><strong>Vorläufige Information, keine fertige Datenschutzerklärung.</strong> Die Verarbeitung im späteren Echtbetrieb muss gesondert dokumentiert und rechtlich geprüft werden.</div><h3>Was passiert mit Testeingaben?</h3><p>Die Eingaben im Meldeformular werden nur in deinem geöffneten Browser zur Vorschau verarbeitet. Die Anwendung sendet keine Meldungen, Fotos, Namen oder E-Mail-Adressen an einen Meldeserver und legt keine Vorgänge in einer Datenbank ab. Bitte verwende ausschließlich erfundene Angaben und keine echten personenbezogenen Daten.</p><h3>Fotos und Status-Demo</h3><p>Ausgewählte Fotos werden nicht hochgeladen. Die vier Beispielmeldungen sind erfunden; Statusänderungen bleiben nur während der Nutzung dieser Seite im Browserfenster bestehen.</p><h3>Technisch notwendige Bereitstellung</h3><p>Bei einem späteren Aufruf über GitHub Pages können technisch bedingte Verbindungsdaten beim Hostinganbieter anfallen. Die PWA kann öffentliche App-Dateien für die Offline-Nutzung im Browser zwischenspeichern; Meldungen und Fotos werden nicht in diesem Offline-Cache gespeichert. Einzelheiten zur tatsächlichen Bereitstellung und zu weiteren Dienstleistern müssen vor Veröffentlichung ergänzt werden.</p><h3>Späterer Echtbetrieb</h3><p>Für die geplante Speicherung von Meldungen, Bildern und Kontaktdaten benötigen wir vorab insbesondere eine benannte verantwortliche Stelle, Rechtsgrundlage, Empfänger und Dienstleister, Speicherdauern, Betroffenenrechte und eine erreichbare Datenschutzkontaktstelle. Diese Angaben stehen noch nicht fest.</p></div></dialog><dialog aria-labelledby="title-nutzung" class="legal-dialog" id="dialog-nutzung"><div class="legal-dialog-content"><button aria-label="Fenster schließen" class="legal-close" type="button">✕</button><h2 id="title-nutzung">Nutzungshinweise</h2><p><strong>Derzeit nur zum Ausprobieren:</strong> Diese Version nimmt keine echten Meldungen entgegen. Eine angezeigte Testvorschau ist keine Eingangsbestätigung und erzeugt keine Vorgangsnummer.</p><p><strong>Keine Notfallmeldungen:</strong> Bei Brand oder unmittelbarer Gefahr für Menschen wähle <a href="tel:112">112</a>. Bei akuten Hydrantenschäden oder Wasseraustritt informiere den Wasserbeschaffungsverband Panker-Giekau direkt über die <a href="tel:+491712171178">Notfall-Rufbereitschaft 0171 2171178</a>.</p><p><strong>Später geplant:</strong> Nach einer offiziellen Freigabe sollen Meldungen mit Fotos übermittelt und anhand einer Vorgangsnummer verfolgt werden können. Bis dahin ist die Anwendung ausschließlich eine unverbindliche Demonstration.</p></div></dialog></main><script>
+const categories={"Straßen & Verkehr": ["Schlagloch / Straßenschaden", "Gehweg beschädigt", "Fußgängerampel defekt", "Geschwindigkeitsanzeige defekt", "Gully / Straßenablauf verstopft", "Hecke behindert Gehweg", "Straße durch Landwirtschaft verschmutzt", "Sonstiges Verkehrsproblem"], "Beleuchtung & Hydranten": ["Straßenlaterne defekt", "Hydrant beschädigt oder verdeckt"], "Spielplätze & Grünanlagen": ["Spielplatz Dorfstraße", "Spielplatz Am Wanderweg", "Hundekotbeutelspender", "Bäume / Grünanlagen"], "Dorfleben & Einrichtungen": ["Strohfigur am Dorfplatz", "Stempelkiste unter den Linden", "Sitzbank / Tisch", "Bushaltestelle Richtung Schönberg", "Bushaltestelle Richtung Kiel"], "Fahrräder & Mobilität": ["SprottenFlotte / abgestellte Fahrräder", "Radweg / Fahrradverkehr"], "Sauberkeit & Müll": ["Illegale Müllentsorgung", "Verschmutzte öffentliche Fläche", "Hundekot / Verschmutzung"]};const lamps=[{"street": "Schönberger Straße", "number": "1", "hint": "Ortseingang von Schönberg"}, {"street": "Schönberger Straße", "number": "2", "hint": ""}, {"street": "Schönberger Straße", "number": "3", "hint": ""}, {"street": "Schönberger Straße", "number": "4", "hint": "Nr. 1 Ecke Lindenstraße"}, {"street": "Schönberger Straße", "number": "5", "hint": "Höhe alte Schule"}, {"street": "Schönberger Straße", "number": "6", "hint": "Bushaltestelle"}, {"street": "Schönberger Straße", "number": "7", "hint": "Ampel"}, {"street": "Schönberger Straße", "number": "8", "hint": "Grotenhof 12"}, {"street": "Schönberger Straße", "number": "9", "hint": "Grotenhof"}, {"street": "Schönberger Straße", "number": "10", "hint": "Ecke Am Kirchteich"}, {"street": "Schönberger Straße", "number": "11", "hint": "Letzte Lampe Ortausgang"}, {"street": "Bgm. A. Stoltenberg-Str.", "number": "1", "hint": "Haus Nr. 2"}, {"street": "Bgm. A. Stoltenberg-Str.", "number": "2", "hint": "Haus Nr. 6"}, {"street": "Bgm. A. Stoltenberg-Str.", "number": "3", "hint": "Haus Nr. 14"}, {"street": "Bgm. A. Stoltenberg-Str.", "number": "4", "hint": "Haus Nr. 20"}, {"street": "Bgm. A. Stoltenberg-Str.", "number": "5", "hint": "Haus Nr. 32"}, {"street": "Am Kirchteich", "number": "1", "hint": "vor Garage Nr.3"}, {"street": "Am Kirchteich", "number": "2", "hint": "neben Carport Nr.5"}, {"street": "Appelhof", "number": "1", "hint": "Haus Nr. 51"}, {"street": "Appelhof", "number": "2", "hint": "Haus Nr. 45"}, {"street": "Appelhof", "number": "3", "hint": "Haus Nr. 39"}, {"street": "Appelhof", "number": "4", "hint": "Haus Nr. 33"}, {"street": "Appelhof", "number": "5", "hint": "Haus Nr. 29"}, {"street": "Appelhof", "number": "6", "hint": "Haus Nr. 23"}, {"street": "Appelhof", "number": "7", "hint": "Durchgang"}, {"street": "Appelhof", "number": "8", "hint": "Haus Nr. 15"}, {"street": "Appelhof", "number": "9", "hint": "Vorgarten von Haus Nr. 11"}, {"street": "Appelhof", "number": "10", "hint": "Haus Nr. 1"}, {"street": "Am Dorfteich", "number": "1", "hint": "Haus Nr.1"}, {"street": "Am Dorfteich", "number": "2", "hint": ""}, {"street": "Am Dorfteich", "number": "3", "hint": "Alter Auf"}, {"street": "Am Dorfteich", "number": "4", "hint": ""}, {"street": "Am Dorfteich", "number": "5", "hint": "Haus Nr. 27"}, {"street": "Krokauer Weg", "number": "1", "hint": "rechts"}, {"street": "Lindenstraße", "number": "1", "hint": "Haus Nr. 1"}, {"street": "Lindenstraße", "number": "2", "hint": "Haus Nr. 5"}, {"street": "Lindenstraße", "number": "3", "hint": "Haus Nr. 9"}, {"street": "Dorfstraße", "number": "1", "hint": "Haus Nr. 4"}, {"street": "Dorfstraße", "number": "2", "hint": ""}, {"street": "Dorfstraße", "number": "3", "hint": "Haus Nr. 15"}, {"street": "Dorfstraße", "number": "4", "hint": "Haus Nr. 19"}, {"street": "Dorfstraße", "number": "5", "hint": "Haus Nr. 25"}, {"street": "Dorfstraße", "number": "6", "hint": "Haus Nr. 33"}, {"street": "Dorfstraße", "number": "7", "hint": "Vorplatz AS"}, {"street": "Dorfstraße", "number": "8", "hint": "Regenrückhaltebecken"}, {"street": "Dorfstraße", "number": "9", "hint": "Regenrückhaltebecken"}, {"street": "Dorfstraße", "number": "10", "hint": "DGH"}, {"street": "Dorfstraße", "number": "11", "hint": "Feuerwehr"}, {"street": "Dorfstraße", "number": "12", "hint": "Außenbereich Rtg. Sportplatz"}, {"street": "Dorfstraße", "number": "13", "hint": "Außenbereich Rtg. Sportplatz"}, {"street": "Dorfstraße", "number": "14", "hint": "Außenbereich Rtg. Sportplatz"}, {"street": "St. Florian Weg", "number": "1", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "2", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "3", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "4", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "5", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "6", "hint": "Gewerbegebiet"}, {"street": "St. Florian Weg", "number": "7", "hint": "Gewerbegebiet"}, {"street": "Am Bahndamm", "number": "1", "hint": "Haus Nr. 1"}, {"street": "Am Bahndamm", "number": "2", "hint": "Haus Nr. 9"}, {"street": "Am Bahndamm", "number": "3", "hint": "Haus Nr. 11 Ecke Spetenhof"}, {"street": "Am Bahndamm", "number": "4", "hint": "Haus Nr. 17"}, {"street": "Am Bahndamm", "number": "5", "hint": "Haus Nr. 27"}, {"street": "Am Bahndamm", "number": "6", "hint": "Haus Nr. 35"}, {"street": "Am Bahndamm", "number": "7", "hint": "Haus Nr. 39"}, {"street": "Am Bahndamm", "number": "8", "hint": "im Außenbereich"}, {"street": "Am Bahndamm", "number": "9", "hint": "im Außenbereich"}, {"street": "Am Bahndamm", "number": "10", "hint": "im Außenbereich"}, {"street": "Am Bahndamm", "number": "11", "hint": "im Außenbereich"}, {"street": "Am Bahndamm", "number": "12", "hint": "im Außenbereich"}, {"street": "Spetenhof", "number": "1", "hint": "Haus Nr. 4"}, {"street": "Spetenhof", "number": "2", "hint": "Haus Nr 6"}, {"street": "Spetenhof", "number": "3", "hint": "Wendehammer"}];const icons=['🚧','💡','🌳','🪑','🚲','🗑️'];const $=id=>document.getElementById(id);let selected=Object.keys(categories)[0];
+function opt(select,value,label){let o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
+function renderCategories(){const root=$('categories');root.replaceChildren();Object.keys(categories).forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.setAttribute('aria-pressed',String(c===selected));const em=document.createElement('span');em.textContent=icons[i];b.append(em,document.createTextNode(c));b.onclick=()=>{selected=c;renderCategories();renderIssues()};root.appendChild(b)})}
+function renderIssues(){const el=$('issue');el.replaceChildren();categories[selected].forEach(v=>opt(el,v,v));updateIssue()}
+function updateIssue(){const issue=$('issue').value;const isLamp=issue==='Straßenlaterne defekt';const isHydrant=issue==='Hydrant beschädigt oder verdeckt';$('lampFields').classList.toggle('hidden',!isLamp);$('faultFields').classList.toggle('hidden',!isLamp);$('hydrantFields').classList.toggle('hidden',!isHydrant);updateHydrantAlert()}
+function updateHydrantAlert(){const issue=$('issue').value;const urgent=issue==='Hydrant beschädigt oder verdeckt'&&$('hydrantProblem').value==='Beschädigt / Wasseraustritt';$('hydrantAlert').classList.toggle('hidden',!urgent)}
+const hydrants=[{"street":"Krokauer Weg","location":"Krokauer Weg 2","hint":""},{"street":"Am Dorfteich","location":"Am Dorfteich 27a","hint":""},{"street":"Am Dorfteich","location":"Am Dorfteich 2","hint":"Haltestelle Schulbus"},{"street":"Am Dorfteich","location":"Am Dorfteich","hint":"Direkt am Dorfteich"},{"street":"Am Dorfteich","location":"Am Dorfteich 5-7","hint":""},{"street":"Appelhof","location":"Appelhof 11","hint":""},{"street":"Appelhof","location":"Appelhof 15-17","hint":"Gehweg neben Laterne Nr. 8"},{"street":"Appelhof","location":"Appelhof 31","hint":"Gehweg"},{"street":"Appelhof","location":"Appelhof 43","hint":"Gehweg"},{"street":"Appelhof","location":"Appelhof 81","hint":"Zufahrt Appelhof auf Höhe Teich"},{"street":"Bgm.A.Stoltenberg-Str.","location":"Bgm.A.Stoltenberg-Str. 14","hint":"Gehweg"},{"street":"Schönberger Straße","location":"Schönberger Straße 1","hint":"Lindenstraße Probsteier Haus"},{"street":"Schönberger Straße","location":"Schönberger Straße 8","hint":"L50"},{"street":"Schönberger Straße","location":"Schönberger Straße 10","hint":"L50"},{"street":"Schönberger Straße","location":"Schönberger Straße 12","hint":"L50"},{"street":"Am Kirchteich","location":"Am Kirchteich 3","hint":""},{"street":"Grotenhof","location":"Grotenhof 4","hint":"L50"},{"street":"Dorfstraße","location":"Dorfstraße 16","hint":""},{"street":"Dorfstraße","location":"Dorfstraße 22","hint":""},{"street":"Dorfstraße","location":"Dorfstraße 30","hint":""},{"street":"Spetenhof","location":"Spetenhof 6","hint":""},{"street":"Am Bahndamm","location":"Am Bahndamm 31","hint":""},{"street":"Am Bahndamm","location":"Am Bahndamm 47","hint":""},{"street":"St. Florian Weg","location":"St. Florian Weg 7","hint":"Gewerbegebiet"},{"street":"St. Florian Weg","location":"St. Florian Weg 9-11","hint":"Gewerbegebiet"},{"street":"St. Florian Weg","location":"St. Florian Weg 16","hint":"Gewerbegebiet"},{"street":"Höhndorfer Weg","location":"Höhndorfer Weg 2","hint":"K47"},{"street":"Höhndorfer Weg","location":"Höhndorfer Weg 4","hint":"K47"},{"street":"Am Sportplatz","location":"Am Sportplatz","hint":"Neben der Schranke"}];
+const hydrantStreets=[...new Set(hydrants.map(h=>h.street))];hydrantStreets.forEach(s=>opt($('hydrantStreet'),s,s));
+$('hydrantStreet').addEventListener('change',()=>{const el=$('hydrantPlace');el.replaceChildren();opt(el,'','Standort nicht bekannt');hydrants.filter(h=>h.street===$('hydrantStreet').value).forEach((h,i)=>opt(el,h.location,h.location+(h.hint?' – '+h.hint:'')));});
+$('hydrantProblem').addEventListener('change',updateHydrantAlert);
+const streets=[...new Set(lamps.map(x=>x.street))];streets.forEach(s=>opt($('street'),s,s));
+$('street').addEventListener('change',()=>{const st=$('street').value;const el=$('lamp');el.replaceChildren();opt(el,'','Nummer nicht bekannt');lamps.filter(l=>l.street===st).forEach(l=>opt(el,l.number,'Laterne Nr. '+l.number+(l.hint?' – '+l.hint:'')));$('lampHint').textContent=st?'Die Laternennummer ist freiwillig.':'';});$('issue').addEventListener('change',updateIssue);
+$('send').addEventListener('click',()=>{const issue=$('issue').value;const isLamp=issue==='Straßenlaterne defekt';const isHydrant=issue==='Hydrant beschädigt oder verdeckt';const location=$('location').value.trim();const street=$('street').value;const lamp=$('lamp').value;if(isLamp&&!street&&!location){alert('Bitte gib eine Straße oder einen Standort an.');return}if(!isLamp&&!isHydrant&&!location){alert('Bitte beschreibe kurz, wo der Mangel ist.');return}if(isHydrant&&!$('hydrantStreet').value&&!location){alert('Bitte wähle eine Straße oder beschreibe den Standort.');return}if(isHydrant&&!$('hydrantProblem').value){alert('Bitte wähle das Hydrantenproblem.');return}const lines=['Kategorie: '+selected,'Mangel: '+issue];if(isLamp){if(street)lines.push('Straße: '+street);if(lamp)lines.push('Laterne Nr.: '+lamp);lines.push('Problem: '+$('fault').value)}if(isHydrant){if($('hydrantStreet').value)lines.push('Straße: '+$('hydrantStreet').value);if($('hydrantPlace').value)lines.push('Hydrant: '+$('hydrantPlace').value);lines.push('Problem: '+$('hydrantProblem').value);if($('hydrantProblem').value==='Beschädigt / Wasseraustritt')lines.push('WICHTIG: Notfall-Rufbereitschaft 0171 2171178 direkt anrufen.')}if(location)lines.push('Standort: '+location);if($('details').value.trim())lines.push('Beschreibung: '+$('details').value.trim());lines.push('Foto ausgewählt: '+($('photo').files.length?'Ja (nicht hochgeladen)':'Nein'));lines.push('Kontakt: Nicht verarbeitet (Testversion)');$('summary').textContent=lines.join('\n');$('result').classList.remove('hidden');$('result').scrollIntoView({behavior:'smooth',block:'start'});});renderCategories();renderIssues();
 
-<div id="lampBox" class="hidden">
-<label for="street">Welche Straße?</label>
-<select id="street"></select>
-<label for="lamp">Welche Laternennummer?</label>
-<select id="lamp"></select>
-<p class="hint">Die Nummer ist freiwillig. Wenn du sie nicht kennst, wähle „Nicht bekannt“.</p>
-<label for="fault">Was ist das Problem?</label>
-<select id="fault">
-<option>Leuchtet nicht</option>
-<option>Flackert</option>
-<option>Beschädigt</option>
-<option>Sonstiges</option>
-</select>
-</div>
+// Alle Statusänderungen gelten ausschließlich in diesem Browserfenster.
+const initialDemo=[
+{id:'FIE-DEMO-001',place:'Spielplatz Am Wanderweg',issue:'Sandkiste verschmutzt',status:'Neu'},
+{id:'FIE-DEMO-002',place:'Schönberger Straße · Laterne 1',issue:'Leuchtet nicht',status:'In Bearbeitung'},
+{id:'FIE-DEMO-003',place:'Bushaltestelle Richtung Kiel',issue:'Sitzbank reinigen',status:'Erledigt'},
+{id:'FIE-DEMO-004',place:'SprottenFlotte-Station',issue:'Fahrrad blockiert Gehweg',status:'Weitergeleitet'}
+];
+let demoReports=initialDemo.map(r=>({...r}));
+const statusValues=['Neu','In Bearbeitung','Erledigt','Weitergeleitet'];
+function statusClass(s){return s==='Erledigt'?'done':s==='In Bearbeitung'?'progress':s==='Weitergeleitet'?'forward':''}
+function renderDemo(){const root=$('demoReports');root.replaceChildren();demoReports.forEach(r=>{
+const box=document.createElement('article');box.className='report';
+const heading=document.createElement('h3');heading.textContent=r.id+' · '+r.place;
+const description=document.createElement('p');description.textContent=r.issue;
+const chip=document.createElement('span');chip.className='status '+statusClass(r.status);chip.textContent=r.status;
+const label=document.createElement('label');label.textContent='Status ändern (nur Demo)';
+const select=document.createElement('select');select.setAttribute('aria-label','Status für '+r.id);
+statusValues.forEach(s=>opt(select,s,s));select.value=r.status;
+select.addEventListener('change',()=>{r.status=select.value;renderDemo();showLookup()});
+box.append(heading,description,chip,label,select);root.append(box);
+})}
+function showLookup(){const id=$('lookup').value.trim().toUpperCase();const found=demoReports.find(r=>r.id===id);
+$('lookupResult').textContent=!id?'Bitte eine Beispielnummer eingeben.':found?'Status für '+found.id+': '+found.status+' ('+found.place+')':'Keine Beispielmeldung gefunden. Bitte FIE-DEMO-001 bis FIE-DEMO-004 verwenden.'}
+function showTab(demo){$('citizenView').classList.toggle('hidden',demo);$('demoView').classList.toggle('hidden',!demo);$('citizenTab').setAttribute('aria-selected',String(!demo));$('demoTab').setAttribute('aria-selected',String(demo));window.scrollTo({top:0,behavior:'smooth'})}
+$('citizenTab').addEventListener('click',()=>showTab(false));
+$('demoTab').addEventListener('click',()=>showTab(true));
+$('resetDemo').addEventListener('click',()=>{demoReports=initialDemo.map(r=>({...r}));renderDemo();showLookup()});
+$('lookupButton').addEventListener('click',showLookup);
+$('lookup').addEventListener('keydown',e=>{if(e.key==='Enter')showLookup()});
+renderDemo();
 
-<label for="location">3. Wo befindet sich der Mangel?</label>
-<input id="location" placeholder="Straße, Hausnummer oder Beschreibung" required>
-<p class="hint">Bei einer Laternenmeldung genügt die Straßenauswahl, wenn du die Nummer kennst.</p>
-
-<label for="description">4. Möchtest du etwas ergänzen?</label>
-<textarea id="description" rows="3" placeholder="Kurze Beschreibung (freiwillig)"></textarea>
-
-<label for="photo">5. Foto hinzufügen (freiwillig)</label>
-<input id="photo" type="file" accept="image/*">
-<p class="hint">Auf dem iPhone kannst du auch direkt die Kamera verwenden.</p>
-
-<button type="submit">Testmeldung prüfen</button>
-</form>
-<p id="result" role="status" aria-live="polite"></p>
-</section>
-<section>
-<h2>Wie geht es weiter?</h2>
-<p>In der späteren Version erhältst du eine Vorgangsnummer. Die zuständigen Mitarbeiter können deine Meldung dann bearbeiten.</p>
-<p class="hint">Die echte Übermittlung, E-Mail-Benachrichtigung und geschützte Verwaltung werden erst nach Einrichtung einer sicheren Serverlösung aktiviert.</p>
-</section>
-</main>
-<footer>Fiefbergen im Blick · Prototyp 0.4</footer>
-<script>
-const types={
-verkehr:[
-"Schlagloch / Straßenschaden",
-"Gehweg beschädigt",
-"Fußgängerampel",
-"Geschwindigkeitsanzeige defekt",
-"Gully verstopft",
-"Hecke behindert Gehweg",
-"Straßenverschmutzung durch Landwirtschaft",
-"Sonstiges"],
-licht:[
-"Straßenlaterne defekt",
-"Laternenmast beschädigt",
-"Hydrant beschädigt oder verdeckt",
-"Sonstiges"],
-gruen:[
-"Spielplatz Dorfstraße",
-"Spielplatz Am Wanderweg",
-"Hundekotbeutelspender",
-"Bäume / Grünflächen",
-"Sonstiges"],
-dorf:[
-"Strohfigur am Dorfplatz",
-"Stempelkiste unter den Linden",
-"Sitzbank / Tisch",
-"Bushaltestelle Schönberg",
-"Bushaltestelle Kiel",
-"Sonstiges"],
-rad:[
-"SprottenFlotte-Ausleihstation",
-"Fahrräder blockieren den Weg",
-"Sonstiges"],
-muell:[
-"Illegale Müllentsorgung",
-"Verschmutzte öffentliche Fläche",
-"Hundekot",
-"Sonstiges"]
-};
-
-const lamps={
-"Schönberger Straße":11,
-"Bgm. A. Stoltenberg-Str.":5,
-"Am Kirchteich":2,
-"Appelhof":10,
-"Am Dorfteich":5,
-"Krokauer Weg":1,
-"Lindenstraße":3,
-"Dorfstraße":14,
-"St. Florian Weg":7,
-"Am Bahndamm":12,
-"Spetenhof":3
-};
-
-const category=document.getElementById("category");
-const detail=document.getElementById("detail");
-const street=document.getElementById("street");
-const lamp=document.getElementById("lamp");
-const fault=document.getElementById("fault");
-const locationField=document.getElementById("location");
-const detailBox=document.getElementById("detailBox");
-const lampBox=document.getElementById("lampBox");
-
-function addOption(select,text,value=text){
-const o=document.createElement("option");
-o.value=value;
-o.textContent=text;
-select.appendChild(o);
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('PWA nicht aktiviert:', err));
+  });
 }
 
-Object.keys(lamps).forEach(s=>addOption(street,s));
-
-function updateLamps(){
-lamp.innerHTML="";
-addOption(lamp,"Nicht bekannt","");
-for(let n=1;n<=lamps[street.value];n++){
-addOption(lamp,"Laterne Nr. "+n,String(n));
-}
-}
-
-function updateDetail(){
-const selected=category.value;
-detail.innerHTML="";
-detailBox.classList.toggle("hidden",!selected);
-if(!selected){
-lampBox.classList.add("hidden");
-return;
-}
-addOption(detail,"Bitte auswählen","");
-types[selected].forEach(t=>addOption(detail,t));
-lampBox.classList.add("hidden");
-}
-
-function updateSpecial(){
-const show=category.value==="licht" &&
-detail.value==="Straßenlaterne defekt";
-lampBox.classList.toggle("hidden",!show);
-if(show && !locationField.value.trim()){
-locationField.value=street.value;
-}
-}
-
-category.addEventListener("change",updateDetail);
-detail.addEventListener("change",updateSpecial);
-street.addEventListener("change",()=>{
-updateLamps();
-if(!locationField.value.trim() ||
-Object.keys(lamps).includes(locationField.value)){
-locationField.value=street.value;
-}
+// Rechtshinweise als Dialog: per Schließen, Escape oder Klick auf den Hintergrund beenden.
+document.querySelectorAll('[data-legal]').forEach(button => {
+  button.addEventListener('click', () => {
+    const dialog = document.getElementById('dialog-' + button.dataset.legal);
+    if (dialog && !dialog.open) dialog.showModal();
+  });
 });
-
-updateLamps();
-
-document.getElementById("form").addEventListener("submit",e=>{
-e.preventDefault();
-const selected=category.options[category.selectedIndex].text;
-let summary=selected+" – "+detail.value;
-if(!lampBox.classList.contains("hidden")){
-summary+=" | "+street.value;
-if(lamp.value)summary+=" | Laterne "+lamp.value;
-summary+=" | "+fault.value;
-}
-summary+=" | Ort: "+locationField.value;
-document.getElementById("result").textContent=
-"Test erfolgreich! "+summary+
-". Es wurden keine Daten gespeichert oder versendet.";
+document.querySelectorAll('.legal-dialog').forEach(dialog => {
+  dialog.querySelector('.legal-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 });
-</script>
-</body>
-</html>
+</script></body></html>

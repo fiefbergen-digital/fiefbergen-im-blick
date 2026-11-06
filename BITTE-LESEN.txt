@@ -1,0 +1,18 @@
+FIEFBERGEN IM BLICK – TESTVERSION 0.7 (PWA)
+
+1. ZIP-Datei entpacken.
+2. index.html lokal mit Chrome öffnen und Funktionen testen.
+3. PWA-Installation funktioniert erst nach dem Hochladen aller Dateien auf GitHub Pages (HTTPS).
+4. Auf GitHub müssen die Dateien samt Unterordner icons/ unverändert im Repository liegen.
+5. iPhone: Seite in Safari öffnen > Teilen > Zum Home-Bildschirm.
+6. Android: Seite in Chrome öffnen > Menü > App installieren bzw. Zum Startbildschirm hinzufügen.
+
+WICHTIG: Nur DEMO. Es werden KEINE Meldungen versendet oder gespeichert.
+Die Status-Demo ist öffentlich und enthält nur erfundene Beispiele.
+Der Offline-Cache speichert nur statische App-Dateien, keine Meldungen oder Fotos.
+Bei künftiger Backend-Anbindung muss das Cache-Konzept erneut geprüft werden.
+Die App darf vor der kommunalen Freigabe nicht als offizieller Meldedienst beworben werden.
+
+NEU: Entwürfe für Impressum, Datenschutz und Nutzungshinweise am Seitenende.
+Diese Angaben sind NICHT vollständig und dürfen nicht als fertige Rechtstexte für einen offiziellen Betrieb verwendet werden.
+Vor einer öffentlichen Veröffentlichung sind verantwortliche Stelle und Kontakt zu klären.

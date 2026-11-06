@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "Fiefbergen im Blick",
+  "short_name": "Fiefbergen",
+  "description": "Unverbindlicher Testprototyp des Fiefberger Mängelmelders. Keine Übermittlung von Meldungen.",
+  "lang": "de",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f6fa",
+  "theme_color": "#073765",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
