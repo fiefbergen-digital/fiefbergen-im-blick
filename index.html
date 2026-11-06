@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fiefbergen im Blick</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f9;color:#17324d;font:16px Arial,sans-serif}
+header{background:#073765;color:white;padding:24px;text-align:center}
+header h1{margin:8px 0}
+main{max-width:650px;margin:24px auto;padding:0 16px}
+section{background:white;padding:24px;border-radius:16px;margin-bottom:18px;box-shadow:0 3px 14px #0001}
+h2{margin-top:0}
+label{display:block;font-weight:bold;margin:16px 0 6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font:inherit}
+button{background:#f3c83e;color:#073765;border:0;border-radius:9px;padding:15px 22px;font-weight:bold;font-size:16px;cursor:pointer;width:100%;margin-top:18px}
+.note{background:#fff3c4;padding:12px;border-radius:8px;font-size:14px}
+small{color:#64748b}
+</style>
+</head>
+<body>
+<header>
+<h1>Fiefbergen im Blick</h1>
+<p>Der digitale Mängelmelder unserer Gemeinde</p>
+</header>
+<main>
+<section>
+<h2>Gemeinsam unser Dorf verbessern</h2>
+<p>Kaputte Straßenlaterne, Schlagloch oder wilder Müll? Hier kannst du einen Mangel melden.</p>
+<div class="note">TESTVERSION: Es werden noch keine Meldungen gespeichert oder versendet. Bitte nur erfundene Testdaten verwenden.</div>
+</section>
+<section>
+<h2>Mangel melden</h2>
+<form id="meldung">
+<label for="kategorie">Was ist passiert?</label>
+<select id="kategorie" required>
+<option value="">Bitte auswählen</option>
+<option>Straßen und Wege</option>
+<option>Straßenbeleuchtung</option>
+<option>Grünanlagen und Spielplätze</option>
+<option>Müll und Verschmutzung</option>
+<option>Sonstiges</option>
+</select>
+<label for="ort">Wo befindet sich der Mangel?</label>
+<input id="ort" required placeholder="Straße oder Ortsbeschreibung">
+<label for="beschreibung">Beschreibung</label>
+<textarea id="beschreibung" rows="4" required placeholder="Was ist dir aufgefallen?"></textarea>
+<label for="foto">Foto (optional)</label>
+<input id="foto" type="file" accept="image/*">
+<label for="name">Dein Name</label>
+<input id="name" required placeholder="Testname">
+<label for="email">Deine E-Mail-Adresse</label>
+<input id="email" type="email" required placeholder="test@example.com">
+<button type="submit">Testmeldung absenden</button>
+</form>
+<p id="ergebnis" role="status"></p>
+</section>
+<section>
+<h2>Bearbeitungsstand</h2>
+<p>In der späteren Version kannst du mit deiner Vorgangsnummer den Bearbeitungsstand deiner Meldung abfragen.</p>
+<small>Diese Funktion wird noch entwickelt.</small>
+</section>
+</main>
+<script>
+document.getElementById("meldung").addEventListener("submit",function(e){
+e.preventDefault();
+document.getElementById("ergebnis").textContent="Test erfolgreich! Das Formular funktioniert. Es wurden keine Daten übertragen oder gespeichert.";
+});
+</script>
+</body>
+</html>
